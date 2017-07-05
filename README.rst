@@ -7,4 +7,4 @@ Render graphs based on API.AI intents.
 See also
 --------
 
-`Sample Module Repository <https://www.kennethreitz.org/essays/repository-structure-and-python>`_. - example repo for Python projects.
+`Sample Module Repository <https://www.kennethreitz.org/essays/repository-structure-and-python>`_ - example repo for Python projects.
