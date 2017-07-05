@@ -1,6 +1,12 @@
-Sample Module Repository
+API.AI Graphviz
 ========================
 
-This simple project is an example repo for Python projects.
+Render graphs based on API.AI intents.
 
-`Learn more <http://www.kennethreitz.org/essays/repository-structure-and-python>`_.
+
+See also
+--------
+
+- Sample Module Repository |--| example repo for Python projects.
+
+.. _Sample Module Repository: https://www.kennethreitz.org/essays/repository-structure-and-python
