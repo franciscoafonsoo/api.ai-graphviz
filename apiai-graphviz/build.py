@@ -2,6 +2,14 @@
 from graphviz import Digraph
 
 
+def build_graph(cenas):
+    f = Digraph('teste', filename='cenas.gv')
+    f.attr(rankdir='LR', size='8,5')
+
+    f.node('true', label='True', shape='doublecircle')
+
+    f.view()
+
 def jantar():
     e = Digraph('teste', filename='telma.gv')
     e.attr(rankdir='LR', size='8,5')
