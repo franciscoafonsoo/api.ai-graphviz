@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
-from . import helpers
+# importing correct path under python 3.6
+import os
+import pprint as pp
+__path__ = [os.path.dirname(os.path.abspath(__file__))]
 
-def get_hmm():
-    """Get a thought."""
-    return 'hmmm...'
+from . import parserIntent
 
+if __name__ == '__main__':
+    load = parserIntent.Load()
 
-def hmm():
-    """Contemplation..."""
-    if helpers.get_answer():
-        print(get_hmm())
+    load.load_intents('./aquamote/intents')
+    pp.pprint(load.data)
