@@ -1,19 +1,26 @@
 # importing correct path under python 3.6
 import os
-import pprint as pp
+from pprint import pprint
 __path__ = [os.path.dirname(os.path.abspath(__file__))]
 
 from . import parserIntent
 from . import build
 
 if __name__ == '__main__':
-    load = parserIntent.Load()
+    intents = parserIntent.Load()
 
-    load.load_intents('./aquamote/intents')
-    pp.pprint(load.data)
+    intents.load_jsons('./aquamote/intents')
+    # pp.pprint(load.data)
 
-    for i in load.intents:
-        pp.pprint(i.name)
-        pp.pprint(i.contextin)
+    # verificar que contextsin são iguais a contextsout. A relação do grafo vai ser
+    # baseado nisso
 
-    build.build_graph(load.data.get('welcome-1-start.json'))
+    l = len(intents.obj)
+    for index, i in enumerate(intents.obj):
+        pprint(i)
+        pprint(i.name)
+        pprint(i.action)
+        pprint(i.contextin)
+        pprint(i.contextout)
+
+    # build.build_graph(load.data.get('welcome-1-start.json'))
