@@ -1,33 +1,33 @@
-"""
-Class Intent:
-
-Used to represent the relevant aspects of an API.AI Intent
-
-Based on the json files inside the 'intent' folder from an agent export.
-"""
-
-
 class Intent:
+    def __init__(self, a: dict):
+        """ Atributs for the Intent Object. Note: only using relevant atributes to build the graph
 
-    def __init__(self, fields):
-        self.name = fields.get('name')
-        self.events = fields.get('events')
-        self.contextin = fields.get('contexts')
-        self.action = fields.get('responses')[0].get('action')
-        self.usersays = fields.get('userSays')
+        :param a: dictionary created from a API.AI Intent JSON
+        """
 
-        # if alias entao alias
-        # if not alias, text.
-        # if neither, empty
+        self.name = a.get('name')
 
-        # for x in fields['userSays']:
-        #   self.usersays.append(x['data'])
+        self.events = a.get('events')
 
-        self.contextout = list()
+        self.contextin = a.get('contexts')
 
-        for i in fields.get('responses')[0].get('affectedContexts'):
-            if not i.get('lifespan') == 0:
-                self.contextout.append(i.get('name'))
+        self.action = a.get('responses')[0].get('action')
+
+        self.usersays = [x.get('data')[0] for x in a.get('userSays')]
+
+        self.usersays = [x.get('text') if len(x) == 1 else x.get('alias') for x in self.usersays]
+
+        self.contextout = [i.get('name') for i in a.get('responses')[0].get('affectedContexts')
+                           if not i.get('lifespan') == 0]
 
     def __str__(self) -> str:
-        return self.name + self.contextin
+        return self.name
+
+    def __eq__(self, o: object) -> bool:
+        """
+        I'm thinking comparing output context with input context here
+
+        :param o: Intent Object
+        :return: True if contextin == contextout
+        """
+        return super().__eq__(o)

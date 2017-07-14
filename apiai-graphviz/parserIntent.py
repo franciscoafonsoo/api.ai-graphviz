@@ -2,26 +2,16 @@
 import os
 import json
 __path__ = [os.path.dirname(os.path.abspath(__file__))]
-
-# local imports
 from . import intent
-
-'''
-Module Load:
-
-    data: dictionario dos ficheiros json
-    obj: lista de objectos do tipo "Intent"
-    relativepath: (uso numa proxima iteracao): verificar se o path "intents" existe
-    ralativefile: (uso numa proxima iteracao): verificar se os jsons sao do formato esperado
-
-    Module responsable for loading the intent folder
-    
-    note:   json.load   - loads a file
-            json.loads  - loads a string
-'''
 
 
 def load_jsons(path: str) -> list:
+    """ Converts all JSON's given in path (inside 'intents) to a list of Intent Objects.
+
+    :param path: the path where the intent json's are located
+    :return: list of Intent objects.
+    """
+
     data = dict()
 
     for i, filename in enumerate(os.listdir(path)):
