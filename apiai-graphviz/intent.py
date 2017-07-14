@@ -20,7 +20,8 @@ class Intent:
         self.contextout = list()
 
         for i in responses[0]['affectedContexts']:
-            if not i.get('lifespan') == 0: self.contextout.append(i.get('name'))
+            if not i.get('lifespan') == 0:
+                self.contextout.append(i.get('name'))
 
     def __str__(self) -> str:
         return self.name + self.contextin
