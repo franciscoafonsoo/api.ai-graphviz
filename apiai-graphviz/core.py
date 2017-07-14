@@ -11,8 +11,8 @@ if __name__ == '__main__':
     load = parserIntent
 
     # parse all the json's in given dir
-    # intents = load.load_jsons(easygui.diropenbox())
-    intents = load.load_jsons('./aquamote/intents')
+    intents = load.load_jsons(easygui.diropenbox())
+    # intents = load.load_jsons('./aquamote/intents')
 
     # verificar que contextsin são iguais a contextsout. A relação do grafo vai ser
     # baseado nisso
@@ -24,7 +24,9 @@ if __name__ == '__main__':
         pprint(i.action)
         pprint(i.contextin)
         pprint(i.contextout)
+        pprint(i.events)
+        pprint(i.first)
 
-    build.build_graph(intents[0])
+    build.build_graph(intents)
 
     # build.build_graph(load.data.get('welcome-1-start.json'))
