@@ -6,7 +6,7 @@ __path__ = [os.path.dirname(os.path.abspath(__file__))]
 
 # local imports
 from . import parserIntent
-from . import build
+# from . import build
 
 if __name__ == '__main__':
     # create the obj for parsing the json's
