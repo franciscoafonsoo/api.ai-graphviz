@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import json
-__path__ = [os.path.dirname(os.path.abspath(__file__))]
-from . import intent
+from api_ai_graph import intent
 
 
 def load_jsons(path: str) -> list:

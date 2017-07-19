@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from graphviz import Digraph
-from . import intent
+from api_ai_graph import intent
 
 
 def build_graph(lintents: list):
     """
     Only building the first intent for now
 
+    :param lintents:
     :type cenas: intent
-    :param cenas:
     :return:
     """
     f = Digraph('intents', filename='graphs/intents')
@@ -28,7 +28,7 @@ def build_graph(lintents: list):
     for x in lintents:
         for y in lintents:
            if x == y:
-                f.edge(x.name, y.name, label=' | '.join(x.usersays))
+                f.edge(y.name, x.name, label=' | '.join(x.usersays))
                 # edge from x to y, labeled
 
 

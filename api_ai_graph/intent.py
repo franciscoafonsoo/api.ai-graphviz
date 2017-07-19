@@ -24,16 +24,12 @@ class Intent:
         self.contextout = sorted([i.get('name') for i in a.get('responses')[0].get('affectedContexts')
                                   if not i.get('lifespan') == 0])
 
-    @staticmethod
-    def find_first(l: list) -> object:
-        return [x for x in l if not x.contextin]
-
     def __str__(self) -> str:
         return self.name
 
     def __eq__(self, o: object) -> bool:
         """
-        I'm thinking comparing output context with input context here
+        Compares output context with input context.
 
         :param o: Intent Object
         :return: True if contextin == contextout

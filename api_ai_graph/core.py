@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
-import os
 import easygui
 from pprint import pprint
-__path__ = [os.path.dirname(os.path.abspath(__file__))]
-from . import parserIntent
-from . import build
+from api_ai_graph import parser
+from api_ai_graph import build
+
 
 if __name__ == '__main__':
     # create the obj for parsing the json's
-    load = parserIntent
 
     # parse all the json's in given dir
-    intents = load.load_jsons(easygui.diropenbox())
+    intents = parser.load_jsons(easygui.diropenbox())
     # intents = load.load_jsons('./aquamote/intents')
 
     # verificar que contextsin são iguais a contextsout. A relação do grafo vai ser
