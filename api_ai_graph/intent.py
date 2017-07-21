@@ -1,15 +1,18 @@
+# -*- coding: utf-8 -*-
 class Intent:
-    def __init__(self, a: dict):
+    def __init__(self, a):
         """ Atributs for the Intent Object. Note: only using relevant atributes to build the graph
 
-        :param a: dictionary created from a API.AI Intent JSON
+        :param a: json.load() from a file containting an intent
+        :type a: dict
         """
 
         self.name = a.get('name')
 
         self.events = [x.get('name') for x in a.get('events')]
 
-        # check for first node
+        self.webhook = a.get('webhookUsed')
+
         sub = '_WELCOME'
         self.first = True if [s for s in self.events if sub in s] else False
 
@@ -24,17 +27,19 @@ class Intent:
         self.contextout = sorted([i.get('name') for i in a.get('responses')[0].get('affectedContexts')
                                   if not i.get('lifespan') == 0])
 
-    def __str__(self) -> str:
+    def __str__(self):
+        """
+        String representation of the class
+        :rtype: str
+        """
         return self.name
 
-    def __eq__(self, o: object) -> bool:
+    def __eq__(self, o):
         """
-        Compares output context with input context.
+        Compares the output context with the input context.
 
-        :param o: Intent Object
-        :return: True if contextin == contextout
+        :type   o:  object
+        :rtype   :  bool
+        :param  o:  Intent Object
         """
-
         return self.contextin[:len(o.contextout)] == o.contextout
-
-        # return super().__eq__(o)
