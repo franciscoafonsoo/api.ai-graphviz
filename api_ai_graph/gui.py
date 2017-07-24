@@ -30,7 +30,7 @@ class ApiAI(BaseWidget):
         # Define the organization of the forms
         self.formset = ['_intent_dir',
                         '_load_intents',
-                        ('_use_rcases', '_build_graph')
+                        ('_user_cases', '_build_graph')
                         ]
         # The ' ' is used to indicate that a empty space should be placed at the bottom of the window
         # If you remove the ' ' the forms will occupy the entire window
