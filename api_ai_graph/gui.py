@@ -7,9 +7,9 @@ from pyforms.Controls import ControlCombo
 from pyforms.Controls import ControlButton
 # from pyforms.Controls import ControlText
 
-from api_ai_graph.parser    import load_jsons as api_load
-from api_ai_graph.build     import build_graph as api_build
-from api_ai_graph.intent    import search_cases as api_search
+from api_ai_graph.parser    import load_jsons   as load
+from api_ai_graph.build     import build_graph  as build
+from api_ai_graph.intent    import search_cases as search
 
 
 class ApiAI(BaseWidget):
@@ -37,14 +37,14 @@ class ApiAI(BaseWidget):
 
     def __button_load(self):
         """_load_intent button action event"""
-        allintents = api_search(api_load(self._intent_dir.value))
+        allintents = search(load(self._intent_dir.value))
 
         for index, elements in enumerate(allintents):
             self._user_cases.add_item(elements, allintents[elements])
 
     def __button_build(self):
         """_build_graph button action event"""
-        api_build(self._user_cases.text, self._user_cases.value)
+        build(self._user_cases.text, self._user_cases.value)
 
 
 # Execute the application
