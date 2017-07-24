@@ -12,13 +12,13 @@ def build_graph(usercase, lintents):
     :param usercase: name of the usercase to build
     """
 
-    remaining = lintents
     f = Digraph(usercase, filename='graphs/' + usercase)
     f.attr(rankdir='LR', size='8,5')
     f.node('true', label='True', shape='doublecircle')
 
     # first intent
 
+    remaining = lintents
     for x in lintents:
         f.node(x.name, label=' | '.join(x.contextout))
         if x.first:
@@ -26,19 +26,15 @@ def build_graph(usercase, lintents):
         elif not x.contextin:
             f.edge('true', x.name, label=' | '.join(x.usersays))
         elif not x.contextin and not x.contextout and x.webhook:
+            # this code is not doing anything right now.
             f.edge('true', x.name, label='action: '.join(x.usersays))
             remaining.remove(x)
             if remaining != lintents:
                 print('yay')
 
-    # for x in lintents:
-    #    if x.first:
-    #        f.node(x.name, label=' | '.join(x.contextout))
-
     for x in remaining:
         for y in remaining:
             if x == y:
-                # edge from y to x, labeled
                 f.edge(y.name, x.name, label=' | '.join(x.usersays))
 
     # noinspection PyArgumentList
