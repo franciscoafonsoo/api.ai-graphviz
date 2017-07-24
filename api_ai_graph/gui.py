@@ -1,6 +1,8 @@
 import pysettings as conf
 
 import pyforms
+
+conf.PYFORMS_MATPLOTLIB_ENABLED = False
 from pyforms          import BaseWidget
 from pyforms.Controls import ControlDir
 from pyforms.Controls import ControlCombo

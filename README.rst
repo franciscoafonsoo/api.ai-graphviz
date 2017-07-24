@@ -8,7 +8,7 @@ Pre-Conditions
 
 API.AI doesn't have a way to "group" intents, that is, a way to say that one intent is related to others.
 
-For simplicity, you should name intents that relate to each other by name. Example: name *signup-* for all signup related intents
+For simplicity, you should name intents that relate to each other by name. Example: name _signup-name_ for all signup related intents
 
 Based on:
 ---------
