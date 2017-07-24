@@ -16,8 +16,6 @@ class Intent:
 
         self.webhook = a.get('webhookUsed')
 
-        self.usercase = str
-
         # find intents representing the first interaction
         sub = '_WELCOME'
         self.first = True if [s for s in self.events if sub in s] else False

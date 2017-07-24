@@ -38,10 +38,10 @@ def build_graph(usercase, lintents):
                 f.edge(y.name, x.name, label=' | '.join(x.usersays))
 
     # noinspection PyArgumentList
-    f.render()
+    # f.render()
 
     # noinspection PyArgumentList
-    # f.view()
+    f.view()
 
 
 def jantar():
