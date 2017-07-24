@@ -7,13 +7,18 @@ Pre-Conditions:
 
 API.AI doesn't have a way to "group" intents, that is, a way to say that one intent is related to others.
 
-So, for example, if you have a lot
+For simplicity, you should name intents that relate to each other by name. Example: 'signup-*' for all signup related intents
 
-See also
+Based on:
 --------
-- pygraphviz_ - full-blown interface wrapping the Graphviz C library with SWIG
-- graphviz-python_ - official Python bindings
+- graphviz_ - Graph Visualization Tools
+- pyforms_ - Python layer of Windows forms, based on PyQT and OpenGL
+- pysettings_ - Python library to provide settings files for modular applications
+
+- `Sample Module Repository`_ - example repo for Python projects.
 - `Sample Module Repository <http://www.kennethreitz.org/essays/repository-structure-and-python>`_ - example repo for Python projects.
 
-.. _pygraphviz: https://pypi.python.org/pypi/pygraphviz
-.. _graphviz-python: https://pypi.python.org/pypi/graphviz-python
+.. _pyforms: https://github.com/UmSenhorQualquer/pyforms
+.. _pysettings: https://github.com/UmSenhorQualquer/pysettings
+.. _graphviz: https://github.com/ellson/graphviz/
+.. _Sample Module Repository: http://www.kennethreitz.org/essays/repository-structure-and-python
