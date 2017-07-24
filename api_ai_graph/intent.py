@@ -37,7 +37,7 @@ class Intent:
 
     def __str__(self):
         """
-        String representation of the class (copy and adapt prints from core.py)
+        String representation of the class (copy and adapt prints from cli.py)
         :rtype: str
         """
         return self.name

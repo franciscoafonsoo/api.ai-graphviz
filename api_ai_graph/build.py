@@ -47,7 +47,6 @@ def build_graph(usercase, lintents):
 def jantar():
     """
     Test function, made for previewing how a graphviz module works
-
     """
     e = Digraph('teste', filename='../graphs/teste.gv')
     e.attr(rankdir='LR', size='8,5')
