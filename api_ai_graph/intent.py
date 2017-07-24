@@ -39,7 +39,7 @@ class Intent:
 
     def __str__(self):
         """
-        String representation of the class
+        String representation of the class (copy and adapt prints from core.py)
         :rtype: str
         """
         return self.name
@@ -57,22 +57,19 @@ class Intent:
 
 def search_cases(lintents):
     """
-    Find User Cases in the given intents
+    Find User Cases in the given intents. returns a dict
+    with the following format : {'usercase': list of intents}
 
     :param lintents: a list of intents
     :type lintents: list
-    :return: dict with key = usercase name and value = list of intents of usercase
-    :rtype: dict
+    :return: defaultdict {'usercase': list of intents}
+    :rtype: defaultdict
     """
 
     group = defaultdict(list)
 
-    # dict: {'usercase': list of intents}
-
     for index, intent in enumerate(lintents):
         if intent.usercase is not '':
             group[intent.usercase].append(intent)
-            # if intent.usercase == lintents[index + 1].usercase:
-                # group[intent.usercase] = list().append(lintents[index + 1])
 
     return group

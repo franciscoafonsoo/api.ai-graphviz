@@ -19,4 +19,5 @@ def load_jsons(path):
     for i, filename in enumerate(os.listdir(path)):
         with open(path + '/' + filename, encoding="utf-8") as data_file:
             data[filename] = json.load(data_file)
+
     return [Intent(value) for keys, value in data.items()]

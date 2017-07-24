@@ -6,7 +6,7 @@ from api_ai_graph.build import build_graph as build
 from api_ai_graph.intent import search_cases as search
 
 if __name__ == '__main__':
-    # welcome message
+
     print('Welcome.\n\nPlease select the "intent" folder from the zip exported from API.AI.\r\n')
 
     # parse all the json's in given dir to a list of Intent objects (api_ai_graphs.intent)
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     for index, i in enumerate(intents):
         # should be in __str__() function. for now its ok here.
 
-        print('Name: ' + i.name)
+        print('Name: ' + str(i))
         print('User Says: ' + ' | '.join(i.usersays))
         print('Context in: ' + ' | '.join(i.contextin))
         print('Context out: ' + ' | '.join(i.contextout))
@@ -27,7 +27,8 @@ if __name__ == '__main__':
     # search user cases
     test = search(intents)
 
+    # printing the dict by user cases
     pprint(test)
 
-    # render the graphs based on the list of intents
-    build(test['welcome'])
+    # render the graphs based on a user case
+    build('welcome', test['welcome'])

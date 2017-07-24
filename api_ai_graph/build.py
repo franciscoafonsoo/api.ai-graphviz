@@ -2,16 +2,18 @@
 from graphviz import Digraph
 
 
-def build_graph(lintents):
+def build_graph(usercase, lintents):
     """
     Build the graph based on a list of Intent Objects (from api_ai_graph.intent)
 
     :type lintents: list
+    :type usercase: str
     :param lintents: list of all intents loaded
+    :param usercase: name of the usercase to build
     """
 
     remaining = lintents
-    f = Digraph('intents', filename='graphs/intents')
+    f = Digraph(usercase, filename='graphs/' + usercase)
     f.attr(rankdir='LR', size='8,5')
     f.node('true', label='True', shape='doublecircle')
 
