@@ -44,7 +44,7 @@ class ApiAI(BaseWidget):
 
     def __button_build(self):
         """_build_graph button action event"""
-        api_build(self._user_cases.name, self._user_cases.value)
+        api_build(self._user_cases.text, self._user_cases.value)
 
 
 # Execute the application
