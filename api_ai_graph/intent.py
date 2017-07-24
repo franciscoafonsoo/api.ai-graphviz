@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from collections import defaultdict
+
+
 class Intent:
     def __init__(self, a):
         """ Atributs for the Intent Object. Note: only using relevant atributes to build the graph
@@ -13,8 +16,15 @@ class Intent:
 
         self.webhook = a.get('webhookUsed')
 
+        self.usercase = str
+
+        # find intents representing the first interaction
         sub = '_WELCOME'
         self.first = True if [s for s in self.events if sub in s] else False
+
+        # find user cases
+        sub = '-'
+        self.usercase = self.name.partition(sub)[0] if sub in self.name else ''
 
         self.contextin = sorted(a.get('contexts'))
 
@@ -43,3 +53,26 @@ class Intent:
         :param  o:  Intent Object
         """
         return self.contextin[:len(o.contextout)] == o.contextout
+
+
+def search_cases(lintents):
+    """
+    Find User Cases in the given intents
+
+    :param lintents: a list of intents
+    :type lintents: list
+    :return: dict with key = usercase name and value = list of intents of usercase
+    :rtype: dict
+    """
+
+    group = defaultdict(list)
+
+    # dict: {'usercase': list of intents}
+
+    for index, intent in enumerate(lintents):
+        if intent.usercase is not '':
+            group[intent.usercase].append(intent)
+            # if intent.usercase == lintents[index + 1].usercase:
+                # group[intent.usercase] = list().append(lintents[index + 1])
+
+    return group
