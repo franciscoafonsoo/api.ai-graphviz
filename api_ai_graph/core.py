@@ -30,5 +30,11 @@ if __name__ == '__main__':
     # printing the dict by user cases
     pprint(test)
 
+    print('User Cases found:')
+    for index, elements in enumerate(test):
+        print(elements)
+
+    case = input('Choose a User Case from the list: ')
+
     # render the graphs based on a user case
-    build('welcome', test['welcome'])
+    build(case, test[case])

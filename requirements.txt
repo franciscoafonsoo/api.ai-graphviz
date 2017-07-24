@@ -2,3 +2,8 @@ nose
 sphinx
 graphviz
 easygui
+numpy
+pyqt5
+-e git://bitbucket.org/fchampalimaud/logging-bootstrap.git#egg=logging-bootstrap
+-e git://github.com/UmSenhorQualquer/pysettings#egg=pysettings
+-e git://https://github.com/UmSenhorQualquer/pyforms#egg=pyforms
