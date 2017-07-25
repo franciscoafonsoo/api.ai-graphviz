@@ -1,5 +1,7 @@
+# !/usr/bin/python3
 # -*- coding: utf-8 -*-
 from collections import defaultdict
+from functools import reduce
 
 
 class Intent:
@@ -20,9 +22,9 @@ class Intent:
         sub = '_WELCOME'
         self.first = True if [s for s in self.events if sub in s] else False
 
-        # find user cases
+        # find user cases.
         sub = '-'
-        self.usercase = self.name.partition(sub)[0] if sub in self.name else ''
+        self.usercase = list()
 
         self.contextin = sorted(a.get('contexts'))
 
@@ -52,11 +54,17 @@ class Intent:
         """
         return self.contextin[:len(o.contextout)] == o.contextout
 
+    def __usercase(self):
+        self.usercase = reduce(lambda x: sub in x, self.contextout)
+        pass
+
 
 def search_cases(lintents):
     """
-    Find User Cases in the given intents. returns a dict
-    with the following format : {'usercase': list of intents}
+    Find 'User Cases' in the given intents. Returns a dict
+    with the following format : {'usercase': list of intents}.
+    If the intent doesn't have a usercase, it should be grouped
+    in with the 'empty' name
 
     :param lintents: a list of intents
     :type lintents: list
@@ -67,7 +75,9 @@ def search_cases(lintents):
     group = defaultdict(list)
 
     for index, intent in enumerate(lintents):
-        if intent.usercase is not '':
+        if intent.usercase is '':
+            group['empty'].append(intent)
+        else:
             group[intent.usercase].append(intent)
 
     return group

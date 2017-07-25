@@ -1,9 +1,10 @@
+# !/usr/bin/python3
 # -*- coding: utf-8 -*-
 import easygui
 from pprint import pprint
-from api_ai_graph.parser import load_jsons as load
-from api_ai_graph.build import build_graph as build
-from api_ai_graph.intent import search_cases as search
+from api_ai_graph.parser    import load_jsons   as load
+from api_ai_graph.build     import build_graph  as build
+from api_ai_graph.intent    import search_cases as search
 
 if __name__ == '__main__':
 
@@ -15,6 +16,9 @@ if __name__ == '__main__':
     l = len(intents)
     for index, i in enumerate(intents):
         # should be in __str__() function. for now its ok here.
+
+        print(type(i.contextin))
+        print(type(i.contextout))
 
         print('Name: ' + str(i))
         print('User Says: ' + ' | '.join(i.usersays))

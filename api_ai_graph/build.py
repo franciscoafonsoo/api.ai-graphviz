@@ -1,3 +1,4 @@
+# !/usr/bin/python3
 # -*- coding: utf-8 -*-
 from graphviz import Digraph
 
@@ -44,7 +45,7 @@ def build_graph(usercase, lintents):
     f.view()
 
 
-def jantar():
+def testing_dot():
     """
     Test function, made for previewing how a graphviz module works
     """

@@ -1,5 +1,7 @@
-import pysettings as conf
+# !/usr/bin/python3
+# -*- coding: utf-8 -*-
 
-PYFORMS_MATPLOTLIB_ENABLED = False
-PYFORMS_WEB_ENABLED = False
-PYFORMS_GL_ENABLED = False
+PYFORMS_MATPLOTLIB_ENABLED  = False
+PYFORMS_WEB_ENABLED         = False
+PYFORMS_GL_ENABLED          = False
+PYFORMS_VISVIS_ENABLED      = False

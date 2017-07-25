@@ -1,13 +1,14 @@
+# !/usr/bin/python3
+# -*- coding: utf-8 -*-
 import pysettings as conf
 
-import pyforms
-
-conf.PYFORMS_MATPLOTLIB_ENABLED = False
 from pyforms          import BaseWidget
 from pyforms.Controls import ControlDir
 from pyforms.Controls import ControlCombo
 from pyforms.Controls import ControlButton
 # from pyforms.Controls import ControlText
+
+import pyforms
 
 from api_ai_graph.parser    import load_jsons   as load
 from api_ai_graph.build     import build_graph  as build
@@ -20,7 +21,7 @@ class ApiAI(BaseWidget):
         super(ApiAI, self).__init__('API.AI Graph')
 
         # Definition of the forms fields
-        self._intent_dir     = ControlDir('Intents location', 'path')
+        self._intent_dir    = ControlDir('Open Intents Folder', 'path')
         self._load_intents  = ControlButton('Load Intents')
         self._user_cases    = ControlCombo('User Cases')
         self._build_graph   = ControlButton('Show Graph')
@@ -30,9 +31,9 @@ class ApiAI(BaseWidget):
         self._build_graph.value     = self.__button_build
 
         # Define the organization of the forms
-        self.formset = ['_intent_dir',
-                        '_load_intents',
-                        ('_user_cases', '_build_graph')
+        self.formset = [('_intent_dir', '_load_intents', ' '),
+                        ('_user_cases', '_build_graph', ' '),
+                        ' '
                         ]
         # The ' ' is used to indicate that a empty space should be placed at the bottom of the window
         # If you remove the ' ' the forms will occupy the entire window
@@ -51,4 +52,4 @@ class ApiAI(BaseWidget):
 
 # Execute the application
 if __name__ == "__main__":
-    pyforms.start_app(ApiAI)
+    pyforms.start_app(ApiAI, [100, 100, 500, 450])

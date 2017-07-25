@@ -1,3 +1,4 @@
+# !/usr/bin/python3
 # -*- coding: utf-8 -*-
 import os
 import json
@@ -9,7 +10,6 @@ def load_jsons(path):
 
     :param path: intent directory extrated from API.AI
     :type path: str
-
     :return: list of Intent objects.
     :rtype: list
     """
