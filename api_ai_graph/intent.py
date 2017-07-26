@@ -22,10 +22,6 @@ class Intent:
         sub = '_WELCOME'
         self.first = True if [s for s in self.events if sub in s] else False
 
-        # find user cases.
-        sub = '-'
-        self.usercase = list()
-
         self.contextin = sorted(a.get('contexts'))
 
         self.action = a.get('responses')[0].get('action')
@@ -36,6 +32,11 @@ class Intent:
 
         self.contextout = sorted([i.get('name') for i in a.get('responses')[0].get('affectedContexts')
                                   if not i.get('lifespan') == 0])
+
+        # find user cases
+        self.usercase = (each for each in self.contextout)
+
+        self.fallback = a.get('fallbackIntent')
 
     def __str__(self):
         """
@@ -52,11 +53,20 @@ class Intent:
         :rtype   :  bool
         :param  o:  Intent Object
         """
-        return self.contextin[:len(o.contextout)] == o.contextout
 
-    def __usercase(self):
-        self.usercase = reduce(lambda x: sub in x, self.contextout)
-        pass
+        events = True
+        usersays = True
+        # if the input context "fits" in the output context
+        context = self.contextin[:len(o.contextout)] == o.contextout
+        # context = self.contextin == o.contextout
+
+        # if the two intents are literraly the same
+        if self.name == o.name:
+            # don't equal if they don't have an event of if the user doesn't say anything
+            events = not self.events
+            usersays = not self.usersays
+
+        return context and events and usersays
 
 
 def search_cases(lintents):
@@ -75,9 +85,10 @@ def search_cases(lintents):
     group = defaultdict(list)
 
     for index, intent in enumerate(lintents):
-        if intent.usercase is '':
-            group['empty'].append(intent)
-        else:
-            group[intent.usercase].append(intent)
+        for context in intent.usercase:
+            if intent.usercase is '':
+                group['empty'].append(intent)
+            else:
+                group[context].append(intent)
 
     return group

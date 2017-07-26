@@ -11,14 +11,13 @@ if __name__ == '__main__':
     print('Welcome.\n\nPlease select the "intent" folder from the zip exported from API.AI.\r\n')
 
     # parse all the json's in given dir to a list of Intent objects (api_ai_graphs.intent)
-    intents = load(easygui.diropenbox())
+    intents = load('/Users/sherby/Documents/scholarship/Aquamote-EN-latest/intents')
 
     l = len(intents)
     for index, i in enumerate(intents):
         # should be in __str__() function. for now its ok here.
 
-        print(type(i.contextin))
-        print(type(i.contextout))
+        print(type(i.usercase))
 
         print('Name: ' + str(i))
         print('User Says: ' + ' | '.join(i.usersays))
@@ -26,7 +25,8 @@ if __name__ == '__main__':
         print('Context out: ' + ' | '.join(i.contextout))
         print('Action: ' + str(i.action))
         print('Events: ' + ''.join(i.events))
-        print('User Case: ' + i.usercase + '\n')
+        print('fallback: ' + str(i.fallback))
+       #  print('User Case: ' + i.usercase + '\n')
 
     # search user cases
     test = search(intents)
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     for index, elements in enumerate(test):
         print(elements)
 
-    case = input('Choose a User Case from the list: ')
+    case = 'signup-followup'
 
     # render the graphs based on a user case
     build(case, test[case])

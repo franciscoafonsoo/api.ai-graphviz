@@ -21,22 +21,30 @@ def build_graph(usercase, lintents):
 
     remaining = lintents
     for x in lintents:
-        f.node(x.name, label=' | '.join(x.contextout))
+        f.node(x.name, label=x.name + '\n' + "in: " + str(x.contextin) + ' \n ' + "out: " + str(x.contextout))
         if x.first:
-            f.edge('true', x.name, label=' | '.join(x.usersays))
+            f.edge('true', x.name, label=x.usersays[0])
         elif not x.contextin:
-            f.edge('true', x.name, label=' | '.join(x.usersays))
+            f.edge('true', x.name, label=x.usersays[0])
         elif not x.contextin and not x.contextout and x.webhook:
             # this code is not doing anything right now.
-            f.edge('true', x.name, label='action: '.join(x.usersays))
+            f.edge('true', x.name, label='action: '.join(x.usersays[0]))
             remaining.remove(x)
             if remaining != lintents:
                 print('yay')
 
-    for x in remaining:
-        for y in remaining:
-            if x == y:
-                f.edge(y.name, x.name, label=' | '.join(x.usersays))
+    # compare every intent with every other intent
+    for target in remaining:
+        for source in remaining:
+
+            # if the first is equal to the second (overwrite equal function at the intent.py
+            if target == source:
+                # draw an edge if the user interacts with the api.ai
+                if target.usersays:
+                    f.edge(source.name, target.name, label=target.usersays[0])
+                # draw an edge if the intent is a intentfallback
+                if target.fallback:
+                    f.edge(source.name, target.name, label='#')
 
     # noinspection PyArgumentList
     # f.render()
