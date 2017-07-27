@@ -43,7 +43,7 @@ def build_graph(usercase, lintents):
             # if the first is equal to the second (overwrite equal function at the intent.py)
 
             if target == source:
-                print('comparar: ' + source.name, target.name)
+                print('comparar: ' + target.name, source.name)
                 # draw an edge if the user interacts with the api.ai
                 if target.fallback:
                     f.edge(source.name, target.name, label='#')
