@@ -3,6 +3,6 @@ sphinx
 graphviz
 numpy
 pyqt5
--e git://bitbucket.org/fchampalimaud/logging-bootstrap.git#egg=logging-bootstrap
--e git://github.com/UmSenhorQualquer/pysettings#egg=pysettings
--e git://https://github.com/UmSenhorQualquer/pyforms#egg=pyforms
+https://bitbucket.org/fchampalimaud/logging-bootstrap/get/master.zip
+https://github.com/UmSenhorQualquer/pysettings/archive/master.zip
+https://github.com/UmSenhorQualquer/pyforms/archive/master.zip

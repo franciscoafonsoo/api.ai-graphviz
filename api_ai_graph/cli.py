@@ -30,7 +30,7 @@ if __name__ == '__main__':
 		print('Action: ' + str(i.action))
 		print('Events: ' + ''.join(i.events))
 		print('fallback: ' + str(i.fallback))
-		#  print('User Case: ' + i.usercase + '\n')
+	#  print('User Case: ' + i.usercase + '\n')
 
 	# search user cases
 	test = search(intents)

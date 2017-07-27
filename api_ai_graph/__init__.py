@@ -12,3 +12,4 @@ __status__ = "Development"
 from pysettings import conf
 
 conf += 'api_ai_graph.settings'
+conf += 'api_ai_graph.user_settings'
