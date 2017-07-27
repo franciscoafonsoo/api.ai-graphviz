@@ -19,5 +19,5 @@ Based on:
 
 .. _pyforms: https://github.com/UmSenhorQualquer/pyforms
 .. _pysettings: https://github.com/UmSenhorQualquer/pysettings
-.. _graphviz: https://github.com/ellson/graphviz/
+.. _graphviz: https://github.com/xflr6/graphviz
 .. _Sample Module Repository: http://www.kennethreitz.org/essays/repository-structure-and-python

@@ -45,28 +45,22 @@ class Intent:
         """
         return self.name
 
-    def __eq__(self, o):
+    def __eq__(self, b):
         """
-        Compares the output context with the input context.
+        first: All output contexts from 'b' also appear in 'a'
+        second: 'b' user says is not empty OR 'b' is a fallback intent
 
-        :type   o:  object
+        first AND second must be true.
+
+        :type   b:  object
         :rtype   :  bool
-        :param  o:  Intent Object
+        :param  b:  Intent Object
         """
 
-        events = True
-        usersays = True
-        # if the input context "fits" in the output context
-        context = self.contextin[:len(o.contextout)] == o.contextout
-        # context = self.contextin == o.contextout
+        first = self.contextin[:len(b.contextout)] == b.contextout
+        second = b.usersays or b.fallback
 
-        # if the two intents are literraly the same
-        if self.name == o.name:
-            # don't equal if they don't have an event of if the user doesn't say anything
-            events = not self.events
-            usersays = not self.usersays
-
-        return context and events and usersays
+        return first and second
 
 
 def search_cases(lintents):

@@ -9,7 +9,7 @@ def build_graph(usercase, lintents):
 
     :type lintents: list
     :type usercase: str
-    :param lintents: list of all intents loaded
+    :param lintents: list of all intents from usercase
     :param usercase: name of the usercase to build
     """
 
@@ -19,61 +19,43 @@ def build_graph(usercase, lintents):
 
     # first intent
 
-    remaining = lintents
     for x in lintents:
-        f.node(x.name, label=x.name + '\n' + "in: " + str(x.contextin) + ' \n ' + "out: " + str(x.contextout))
+
+        # if the intent has an event, we create a 'rect' shaped node that demostrastes a connection to the server.
+        # in later stages, when an intent connects to this intent, we connected to the 'event' intent instead.
+
+        if x.events:
+            f.node(x.events[0], label=x.events[0], shape='rect')
+            f.node(x.name, label=x.name + '\n' + "in: " + str(x.contextin) + ' \n ' + "out: " + str(x.contextout))
+            f.edge(x.events[0], x.name)
         if x.first:
+            f.node(x.name, label=x.name + '\n' + "in: " + str(x.contextin) + ' \n ' + "out: " + str(x.contextout))
             f.edge('true', x.name, label=x.usersays[0])
         elif not x.contextin:
+            f.node(x.name, label=x.name + ' \n ' + "out: " + str(x.contextout))
             f.edge('true', x.name, label=x.usersays[0])
-        elif not x.contextin and not x.contextout and x.webhook:
-            # this code is not doing anything right now.
-            f.edge('true', x.name, label='action: '.join(x.usersays[0]))
-            remaining.remove(x)
-            if remaining != lintents:
-                print('yay')
+        else:
+            f.node(x.name, label=x.name + '\n' + "in: " + str(x.contextin) + ' \n ' + "out: " + str(x.contextout))
 
     # compare every intent with every other intent
-    for target in remaining:
-        for source in remaining:
 
-            # if the first is equal to the second (overwrite equal function at the intent.py
+    for target in lintents:
+        for source in lintents:
+
+            # if the first is equal to the second (overwrite equal function at the intent.py)
             if target == source:
                 # draw an edge if the user interacts with the api.ai
-                if target.usersays:
-                    f.edge(source.name, target.name, label=target.usersays[0])
-                # draw an edge if the intent is a intentfallback
                 if target.fallback:
                     f.edge(source.name, target.name, label='#')
+                elif target.events:
+                    f.edge(source.name, target.events[0], label='event')
+                else:
+                    f.edge(source.name, target.name, label=target.usersays[0])
+
+                    # draw an edge if the intent is a intentfallback
 
     # noinspection PyArgumentList
     # f.render()
 
     # noinspection PyArgumentList
     f.view()
-
-
-def testing_dot():
-    """
-    Test function, made for previewing how a graphviz module works
-    """
-    e = Digraph('teste', filename='../graphs/teste.gv')
-    e.attr(rankdir='LR', size='8,5')
-
-    e.node('true', label='True', shape='doublecircle')
-    e.node('welcome-0-start', label='signup-data | "Welcome"')
-    e.node('welcome-1-yes', label='signup-data | "cenas"')
-
-    e.edge('true', 'welcome-0-start', label='signup')
-    e.edge('welcome-0-start', 'true', label='cancel')
-    e.edge('welcome-0-start', 'true', label='no')
-    e.edge('welcome-0-start', 'welcome-0-start', label='!= no, yes')
-    e.edge('welcome-0-start', 'welcome-1-yes', label='yes')
-
-    e.edge('telma', 'pizza', label='faz')
-    e.edge('pizza', 'jantar', label='para o')
-    e.edge('telma', 'chico', label='E manda à merda')
-    e.edge('chico', 'chico', label='recur.')
-
-    # noinspection PyArgumentList
-    e.view()
