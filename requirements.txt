@@ -1,7 +1,6 @@
 nose
 sphinx
 graphviz
-easygui
 numpy
 pyqt5
 -e git://bitbucket.org/fchampalimaud/logging-bootstrap.git#egg=logging-bootstrap

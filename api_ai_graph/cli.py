@@ -1,6 +1,5 @@
 # !/usr/bin/python3
 # -*- coding: utf-8 -*-
-import easygui
 from pprint import pprint
 from api_ai_graph.parser    import load_jsons   as load
 from api_ai_graph.build     import build_graph  as build
