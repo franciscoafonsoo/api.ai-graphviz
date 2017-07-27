@@ -278,3 +278,9 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/macos,linux,python,pycharm,windows,jetbrains,virtualenv
+api_ai_graph/graphs
+*.pdf
+.idea/api.ai-graphviz.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
