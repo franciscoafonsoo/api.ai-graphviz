@@ -18,5 +18,11 @@ setup(
     author_email='afonso.fcul@gmail.com',
     url='https://github.com/franciscoafonsoo/api_ai_graph',
     license=license,
-    packages=find_packages(exclude=('tests', 'docs'))
+    packages=find_packages(exclude=('tests', 'docs')),
+    install_requires=["nose", "sphinx", "graphviz", "numpy", "pyqt5"],
+    dependency_links=[
+        "https://bitbucket.org/fchampalimaud/logging-bootstrap/get/master.zip",
+        "https://github.com/UmSenhorQualquer/pysettings/archive/master.zip",
+        "https://github.com/UmSenhorQualquer/pyforms/archive/master.zip"
+    ],
 )
